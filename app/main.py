@@ -1,4 +1,6 @@
 import os
+from pathlib import Path
+
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -10,10 +12,14 @@ from app.crud import create_todo, delete_todo, get_todos, toggle_todo
 
 APP_TITLE = os.getenv("APP_TITLE", "오늘의 할 일")
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = BASE_DIR / "app" / "templates"
+STATIC_DIR = BASE_DIR / "todo-app" / "static"
+
 app = FastAPI(title=APP_TITLE)
 Base.metadata.create_all(bind=engine)
-templates = Jinja2Templates(directory="app/templates")
-app.mount("/static", StaticFiles(directory="todo-app/static"), name="static")
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
 @app.get("/health")
