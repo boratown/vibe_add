@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ app_title }}</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>{{ app_title }}</h1>
+    <div class="subtitle">한눈에 정리하고, 완료한 일도 쉽게 관리해 보세요.</div>
+    <div class="summary">
+      <span id="todo-count">남은 할 일 0개</span>
+      <span>로컬 저장으로 안전하게 유지</span>
+    </div>
+    <form id="todo-form">
+      <input id="todo-input" type="text" placeholder="할 일을 입력하세요" autocomplete="off">
+      <button class="add-btn" type="submit">추가</button>
+    </form>
+    <div id="message" class="message" aria-live="polite"></div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all" type="button">전체</button>
+      <button class="filter-btn" data-filter="active" type="button">진행중</button>
+      <button class="filter-btn" data-filter="completed" type="button">완료</button>
+    </div>
+    <ul id="todo-list"></ul>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
